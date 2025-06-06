@@ -71,7 +71,6 @@ class PlaywrightManagerTest {
     PlaywrightConfig defaultConfig = PlaywrightManager.getConfig();
 
     assertThat(defaultConfig).isNotNull();
-    // You might want to verify some default values here
   }
 
   @Test
@@ -79,7 +78,6 @@ class PlaywrightManagerTest {
     PlaywrightManager.initialize(config);
     PlaywrightManager.resetConfig();
 
-    // Should initialize with default config
     assertThat(PlaywrightManager.getConfig()).isNotNull();
     assertThat(PlaywrightManager.getConfig()).isNotEqualTo(config);
   }

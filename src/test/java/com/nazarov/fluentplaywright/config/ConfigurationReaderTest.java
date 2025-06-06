@@ -3,6 +3,7 @@ package com.nazarov.fluentplaywright.config;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Duration;
+import java.util.Properties;
 import org.junit.jupiter.api.Test;
 
 class ConfigurationReaderTest {
@@ -25,4 +26,12 @@ class ConfigurationReaderTest {
     assertThat(config.headless()).isFalse();
     assertThat(config.locatorTimeout()).isEqualTo(Duration.ofSeconds(10));
   }
+
+  @Test
+  void shouldUseDefaultsWhenConfigurationFileIsMissing() {
+    PlaywrightConfig config = ConfigurationReader.readConfiguration("nonexistent.properties");
+    assertThat(config.browserType()).isEqualTo(BrowserType.CHROMIUM);
+    assertThat(config.headless()).isTrue();
+  }
+
 }
